@@ -171,3 +171,340 @@ flex:1;
 display:flex;
 justify-content:center;
 }
+/* ===========================
+   PREMIUM MOCKUP
+=========================== */
+
+.mockup{
+
+width:350px;
+
+height:460px;
+
+background:linear-gradient(145deg,#2563eb,#7c3aed);
+
+border-radius:25px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+font-size:34px;
+
+font-weight:800;
+
+padding:40px;
+
+color:#fff;
+
+box-shadow:0 40px 90px rgba(0,0,0,.45);
+
+animation:floatBook 5s ease-in-out infinite;
+
+}
+
+@keyframes floatBook{
+
+0%{transform:translateY(0px) rotate(-2deg);}
+
+50%{transform:translateY(-20px) rotate(2deg);}
+
+100%{transform:translateY(0px) rotate(-2deg);}
+
+}
+
+/* ===========================
+   SECTIONS
+=========================== */
+
+section{
+
+padding:120px 0;
+
+}
+
+.title{
+
+font-size:48px;
+
+font-weight:800;
+
+text-align:center;
+
+margin-bottom:20px;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+max-width:700px;
+
+margin:auto auto 70px;
+
+color:#9aa8c6;
+
+font-size:19px;
+
+line-height:1.8;
+
+}
+
+/* ===========================
+   GLASS CARDS
+=========================== */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:24px;
+
+padding:35px;
+
+transition:.4s;
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+border-color:#4f8cff;
+
+box-shadow:0 35px 80px rgba(79,140,255,.25);
+
+}
+
+.card h3{
+
+margin-bottom:18px;
+
+font-size:24px;
+
+}
+
+.card p{
+
+line-height:1.8;
+
+color:#b8c4de;
+
+}
+
+/* ===========================
+   STATS
+=========================== */
+
+#users,
+#downloads,
+#prompts{
+
+font-size:60px;
+
+font-weight:800;
+
+background:linear-gradient(90deg,#4f8cff,#7c3aed);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+
+background:#050b15;
+
+padding:70px 0;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+footer h2{
+
+font-size:34px;
+
+margin-bottom:20px;
+
+}
+
+footer h3{
+
+margin-bottom:15px;
+
+}
+
+footer p{
+
+line-height:1.8;
+
+color:#94a3b8;
+
+}
+
+footer a{
+
+color:#94a3b8;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+footer a:hover{
+
+color:#4f8cff;
+
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.card{
+
+animation:fadeUp .9s ease;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:991px){
+
+.hero{
+
+flex-direction:column;
+
+text-align:center;
+
+padding-top:160px;
+
+}
+
+.hero-text h1{
+
+font-size:50px;
+
+}
+
+nav{
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+nav ul{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:18px;
+
+}
+
+.mockup{
+
+width:280px;
+
+height:380px;
+
+font-size:28px;
+
+}
+
+.title{
+
+font-size:38px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.hero-text h1{
+
+font-size:40px;
+
+}
+
+.hero-text p{
+
+font-size:18px;
+
+}
+
+.btn{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.logo{
+
+font-size:26px;
+
+}
+
+   }
