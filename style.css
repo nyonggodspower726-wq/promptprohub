@@ -464,3 +464,293 @@ line-height:1.9;
 color:#b8c4de;
 
                      }
+/* ==========================================
+   PREMIUM STATS
+========================================== */
+
+#users,
+#downloads,
+#prompts{
+
+font-size:60px;
+font-weight:800;
+
+background:linear-gradient(90deg,#4f8cff,#7c3aed);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+/* ==========================================
+   NEWSLETTER
+========================================== */
+
+form{
+
+margin-top:30px;
+
+}
+
+input[type="email"]{
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.08);
+
+color:#fff;
+
+outline:none;
+
+transition:.35s;
+
+}
+
+input[type="email"]:focus{
+
+border-color:#4f8cff;
+
+box-shadow:0 0 20px rgba(79,140,255,.30);
+
+}
+
+input::placeholder{
+
+color:#9fb0d3;
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer{
+
+background:#050b15;
+
+padding:80px 0 40px;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+footer h2{
+
+font-size:34px;
+
+margin-bottom:18px;
+
+}
+
+footer h3{
+
+font-size:22px;
+
+margin-bottom:18px;
+
+color:#ffffff;
+
+}
+
+footer p{
+
+line-height:1.9;
+
+color:#9aa8c6;
+
+}
+
+footer a{
+
+color:#9aa8c6;
+
+text-decoration:none;
+
+transition:.35s;
+
+}
+
+footer a:hover{
+
+color:#4f8cff;
+
+padding-left:6px;
+
+}
+
+/* ==========================================
+   FADE ANIMATION
+========================================== */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:991px){
+
+.hero{
+
+flex-direction:column;
+
+text-align:center;
+
+padding-top:160px;
+
+}
+
+.hero-text h1{
+
+font-size:52px;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+.hero-trust{
+
+justify-content:center;
+
+}
+
+nav{
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+nav ul{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:18px;
+
+}
+
+.mockup{
+
+width:300px;
+
+height:400px;
+
+font-size:28px;
+
+}
+
+.title{
+
+font-size:40px;
+
+}
+
+.subtitle{
+
+font-size:18px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.container{
+
+width:92%;
+
+}
+
+.hero{
+
+gap:40px;
+
+}
+
+.hero-text h1{
+
+font-size:40px;
+
+}
+
+.hero-text p{
+
+font-size:18px;
+
+}
+
+.btn,
+.btn-outline{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.logo{
+
+font-size:26px;
+
+}
+
+.title{
+
+font-size:34px;
+
+}
+
+.subtitle{
+
+font-size:17px;
+
+}
+
+.mockup{
+
+width:260px;
+
+height:360px;
+
+padding:30px;
+
+}
+
+footer{
+
+text-align:center;
+
+}
+
+   }
