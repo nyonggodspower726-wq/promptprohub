@@ -1,66 +1,161 @@
-// PromptPro Hub Premium PromptPro
+// ================================
+// PromptPro Hub Premium Script v2.0
+// ================================
 
-// Smooth reveal animatiSmoothhnst observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-        }
-    });
+// Reveal Animation
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, {
+  threshold: 0.15
 });
 
-document.querySelectorAll(".card,.hero-text,.hero-image").forEach((el)=>{
-    observer.observe(el);
+document.querySelectorAll(".card, .hero-text, .hero-image, section").forEach((el) => {
+  observer.observe(el);
 });
 
-// Floating animation
+// Smooth Navigation
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+  anchor.addEventListener("click", function (e) {
+
+    e.preventDefault();
+
+    const target = document.querySelector(this.getAttribute("href"));
+
+    if (target) {
+
+      target.scrollIntoView({
+
+        behavior: "smooth"
+
+      });
+
+    }
+
+  });
+
+});
+
+// Floating Book Effect
+
 const mockup = document.querySelector(".mockup");
 
-if(mockup){
-setInterval(()=>{
-mockup.style.transform="translateY(-10px)";
-setTimeout(()=>{
-mockup.style.transform="translateY(0px)";
-},1000);
-},2000);
-}
+if (mockup) {
 
-// Counter animation
-function animateValue(id,start,end,duration){
+  let up = true;
 
-const obj=document.getElementById(id);
+  setInterval(() => {
 
-if(!obj) return;
+    mockup.style.transition = "transform .8s ease";
 
-let range=end-start;
+    mockup.style.transform = up
+      ? "translateY(-12px)"
+      : "translateY(0px)";
 
-let current=start;
+    up = !up;
 
-let increment=end>start?1:-1;
-
-let step=Math.abs(Math.floor(duration/range));
-
-let timer=setInterval(()=>{
-
-current+=increment;
-
-obj.innerHTML=current;
-
-if(current==end){
-
-clearInterval(timer);
+  }, 1800);
 
 }
 
-},step);
+// Cookie Banner Memory
 
-}
+const cookieBanner = document.getElementById("cookie-banner");
 
-window.onload=function(){
+if (cookieBanner) {
 
-animateValue("users",0,1200,2000);
+  if (localStorage.getItem("cookieAccepted")) {
 
-animateValue("downloads",0,8500,2500);
-
-animateValue("prompts",0,34,1500);
+    cookieBanner.style.display = "none";
 
   }
+
+  const btn = cookieBanner.querySelector("button");
+
+  if (btn) {
+
+    btn.addEventListener("click", () => {
+
+      localStorage.setItem("cookieAccepted", "true");
+
+      cookieBanner.style.display = "none";
+
+    });
+
+  }
+
+}
+
+// Back To Top Button
+
+const backToTop = document.querySelector("button[onclick*='scrollTo']");
+
+window.addEventListener("scroll", () => {
+
+  if (!backToTop) return;
+
+  if (window.scrollY > 500) {
+
+    backToTop.style.opacity = "1";
+
+    backToTop.style.visibility = "visible";
+
+  } else {
+
+    backToTop.style.opacity = "0";
+
+    backToTop.style.visibility = "hidden";
+
+  }
+
+});
+
+// Active Navigation Link
+
+const sections = document.querySelectorAll("section");
+
+const navLinks = document.querySelectorAll("nav ul li a");
+
+window.addEventListener("scroll", () => {
+
+  let current = "";
+
+  sections.forEach(section => {
+
+    const sectionTop = section.offsetTop - 120;
+
+    if (pageYOffset >= sectionTop) {
+
+      current = section.getAttribute("id");
+
+    }
+
+  });
+
+  navLinks.forEach(link => {
+
+    link.classList.remove("active");
+
+    if (link.getAttribute("href") === "#" + current) {
+
+      link.classList.add("active");
+
+    }
+
+  });
+
+});
+
+// Welcome Message
+
+window.addEventListener("load", () => {
+
+  console.log("🚀 PromptPro Hub Premium Loaded Successfully");
+
+});
