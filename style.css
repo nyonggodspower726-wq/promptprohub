@@ -279,3 +279,188 @@ transition:.35s;
 background:#4f8cff;
 
 }
+.hero-trust{
+
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+
+}
+
+.hero-trust div{
+
+padding:12px 20px;
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.08);
+border-radius:15px;
+font-size:15px;
+color:#d8e3ff;
+backdrop-filter:blur(10px);
+
+}
+
+/* Hero Image */
+
+.hero-image{
+
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+.mockup{
+
+width:360px;
+height:470px;
+padding:45px;
+border-radius:28px;
+
+background:linear-gradient(145deg,#2563eb,#7c3aed);
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+font-size:32px;
+font-weight:800;
+
+color:#fff;
+
+box-shadow:
+0 40px 90px rgba(0,0,0,.45),
+0 0 60px rgba(79,140,255,.25);
+
+animation:floatBook 5s ease-in-out infinite;
+
+}
+
+.mockup h2{
+
+margin:18px 0;
+font-size:30px;
+
+}
+
+.mockup p{
+
+font-size:18px;
+line-height:1.8;
+
+}
+
+@keyframes floatBook{
+
+0%{
+
+transform:translateY(0px) rotate(-2deg);
+
+}
+
+50%{
+
+transform:translateY(-20px) rotate(2deg);
+
+}
+
+100%{
+
+transform:translateY(0px) rotate(-2deg);
+
+}
+
+}
+
+/* Sections */
+
+section{
+
+padding:140px 0;
+
+}
+
+.title{
+
+font-size:50px;
+font-weight:800;
+text-align:center;
+margin-bottom:20px;
+
+}
+
+.subtitle{
+
+max-width:760px;
+margin:0 auto 70px;
+
+text-align:center;
+
+font-size:19px;
+line-height:1.9;
+
+color:#9fb0d3;
+
+}
+
+/* Cards */
+
+.cards{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:24px;
+
+padding:35px;
+
+transition:.4s;
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+animation:fadeUp .9s ease;
+
+}
+
+.card:hover{
+
+transform:translateY(-12px) scale(1.02);
+
+border-color:#4f8cff;
+
+box-shadow:0 45px 90px rgba(79,140,255,.30);
+
+}
+
+.card h3{
+
+font-size:24px;
+
+margin-bottom:18px;
+
+color:#ffffff;
+
+}
+
+.card p{
+
+font-size:17px;
+
+line-height:1.9;
+
+color:#b8c4de;
+
+                     }
