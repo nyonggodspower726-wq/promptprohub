@@ -1,0 +1,12 @@
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/auth/tiktok"
+  to = "/.netlify/functions/tiktok-login"
+  status = 302
+
+[[redirects]]
+  from = "/auth/callback"
+  to = "/.netlify/functions/tiktok-callback"
+  status = 200
