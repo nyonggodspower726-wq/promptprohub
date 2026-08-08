@@ -1,38 +1,52 @@
-exports.handler = async () => {
-  const clientKey = process.env.TIKTOK_CLIENT_KEY;
+exports.handler = async function () {
+  try {
+    const clientKey = process.env.TIKTOK_CLIENT_KEY;
 
-  if (!clientKey) {
-    return {
-      statusCode: 500,
-      body: "TikTok Client Key is not configured."
-    };
-  }
+    if (!clientKey) {
+      return {
+        statusCode: 500,
+        headers: {
+          "Content-Type": "text/html; charset=utf-8"
+        },
+        body: "<h2>Missing TIKTOK_CLIENT_KEY</h2><p>Add it to Netlify Environment Variables.</p>"
+      };
+    }
 
-  const redirectUri =
-    "https://promptprohub00.netlify.app/auth/callback";
+    const redirectUri =
+      "https://promptprohub00.netlify.app/.netlify/functions/tiktok-callback";
 
-  const state =
-    Math.random().toString(36).substring(2) +
-    Date.now().toString(36);
+    const state = crypto.randomUUID();
 
-  const scope = "user.info.basic,user.info.stats,video.upload,video.publish";
-
-  const url =
-    "https://www.tiktok.com/v2/auth/authorize/?" +
-    new URLSearchParams({
+    const params = new URLSearchParams({
       client_key: clientKey,
       response_type: "code",
-      scope: scope,
+      scope: "user.info.basic,video.upload",
       redirect_uri: redirectUri,
       state: state
-    }).toString();
+    });
 
-  return {
-    statusCode: 302,
-    headers: {
-      Location: url,
-      "Set-Cookie":
-        `tiktok_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`
-    }
-  };
+    const tiktokUrl =
+      "https://www.tiktok.com/v2/auth/authorize/?" +
+      params.toString();
+
+    return {
+      statusCode: 302,
+      headers: {
+        Location: tiktokUrl,
+        "Set-Cookie": `tiktok_oauth_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`
+      },
+      body: ""
+    };
+
+  } catch (error) {
+    console.error("TikTok login error:", error);
+
+    return {
+      statusCode: 500,
+      headers: {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      body: "<h2>TikTok login error</h2>"
+    };
+  }
 };
