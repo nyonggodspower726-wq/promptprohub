@@ -1,3 +1,5 @@
+const crypto = require("crypto");
+
 exports.handler = async function () {
   try {
     const clientKey = process.env.TIKTOK_CLIENT_KEY;
@@ -33,7 +35,8 @@ exports.handler = async function () {
       statusCode: 302,
       headers: {
         Location: tiktokUrl,
-        "Set-Cookie": `tiktok_oauth_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`
+        "Set-Cookie":
+          `tiktok_oauth_state=${state}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=600`
       },
       body: ""
     };
@@ -46,7 +49,7 @@ exports.handler = async function () {
       headers: {
         "Content-Type": "text/html; charset=utf-8"
       },
-      body: "<h2>TikTok login error</h2>"
+      body: "<h2>TikTok login error</h2><p>Check the Netlify function logs.</p>"
     };
   }
 };
