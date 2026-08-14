@@ -8,7 +8,8 @@
 
 <title>PromptPro Hub Checkout | AI Business Toolkit</title>
 
-<meta name="description" content="Get instant access to PromptPro Hub - The Ultimate AI Business Toolkit.">
+<meta name="description"
+content="Get instant access to PromptPro Hub - The Ultimate AI Business Toolkit.">
 
 <link rel="stylesheet" href="style.css">
 
@@ -70,19 +71,35 @@ padding:18px 35px;
 border-radius:12px;
 background:#4F8CFF;
 color:white;
+border:none;
 text-decoration:none;
 font-size:18px;
 font-weight:bold;
 margin:15px;
+cursor:pointer;
 }
 
 .btn:hover{
 opacity:.85;
 }
 
+.btn:disabled{
+opacity:.5;
+cursor:not-allowed;
+}
+
 .note{
 color:#9fb0d3;
 margin-top:30px;
+}
+
+#paymentStatus{
+display:none;
+margin-top:25px;
+padding:15px;
+border-radius:10px;
+background:#101d33;
+color:#b7c4df;
 }
 
 </style>
@@ -96,7 +113,11 @@ margin-top:30px;
 <div class="checkout">
 
 
-<img src="ebook.png" class="cover" alt="PromptPro Hub AI Business Toolkit">
+<img
+src="ebook.png"
+class="cover"
+alt="PromptPro Hub AI Business Toolkit"
+>
 
 
 <h1>
@@ -107,11 +128,13 @@ The Ultimate AI Business Toolkit
 
 <p class="subtitle">
 
-<p class="subtitle">
-
-Unlock a premium collection of AI prompts designed to help entrepreneurs, creators, freelancers and marketers save hours of work, create better content, and use ChatGPT like a professional.
+Unlock a premium collection of AI prompts designed to help
+entrepreneurs, creators, freelancers and marketers save hours
+of work, create better content, and use ChatGPT like a professional.
 
 </p>
+
+
 <div class="features">
 
 <h2>What You Get:</h2>
@@ -131,30 +154,44 @@ Unlock a premium collection of AI prompts designed to help entrepreneurs, creato
 
 <p>Limited Launch Price</p>
 
+
 <div class="price">
 $14.99
 </div>
 
 
-<a href="https://flutterwave.com/pay/mcwzznhuu0lo"
+<!-- USD BUTTON -->
+
+<button
 class="btn"
-target="_blank">
+id="usdButton"
+onclick="startPayment('USD')"
+>
 
 🌍 Buy Now - USD
 
-</a>
+</button>
 
 
 <br>
 
 
-<a href="https://flutterwave.com/pay/fola86ilb2da"
+<!-- NAIRA BUTTON -->
+
+<button
 class="btn"
-target="_blank">
+id="ngnButton"
+onclick="startPayment('NGN')"
+>
 
 🇳🇬 Buy Now - Naira
 
-</a>
+</button>
+
+
+<div id="paymentStatus">
+Preparing secure payment...
+</div>
 
 
 <p class="note">
@@ -167,6 +204,113 @@ target="_blank">
 </div>
 
 
+<script>
+
+const PAYMENT_SERVER =
+"https://promptpro-payment-production-f97b.up.railway.app";
+
+
+async function startPayment(currency){
+
+    const usdButton =
+        document.getElementById("usdButton");
+
+    const ngnButton =
+        document.getElementById("ngnButton");
+
+    const status =
+        document.getElementById("paymentStatus");
+
+
+    // Disable buttons while processing
+
+    usdButton.disabled = true;
+    ngnButton.disabled = true;
+
+
+    status.style.display = "block";
+
+    status.innerText =
+        "Preparing secure Flutterwave payment...";
+
+
+    try{
+
+        const response = await fetch(
+            PAYMENT_SERVER + "/create-payment",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    currency: currency,
+
+                    email:
+                        "customer@promptprohub.com"
+
+                })
+            }
+        );
+
+
+        const result =
+            await response.json();
+
+
+        if(
+            result.status === "success"
+            &&
+            result.payment_url
+        ){
+
+            status.innerText =
+                "Redirecting to secure payment...";
+
+
+            window.location.href =
+                result.payment_url;
+
+            return;
+        }
+
+
+        throw new Error(
+            result.message
+            ||
+            "Payment could not be created."
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Payment Error:",
+            error
+        );
+
+
+        status.style.display =
+            "block";
+
+        status.innerText =
+            "Payment could not be started. Please try again.";
+
+
+        usdButton.disabled = false;
+        ngnButton.disabled = false;
+
+    }
+
+}
+
+</script>
+
+
 </body>
 
-  </html>
+</html>
