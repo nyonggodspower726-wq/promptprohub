@@ -96,10 +96,24 @@ margin-top:30px;
 #paymentStatus{
 display:none;
 margin-top:25px;
-padding:15px;
+padding:18px;
 border-radius:10px;
 background:#101d33;
 color:#b7c4df;
+line-height:1.6;
+word-break:break-word;
+}
+
+#errorBox{
+display:none;
+margin-top:20px;
+padding:18px;
+border-radius:10px;
+background:#30151a;
+color:#ffb4b4;
+text-align:left;
+white-space:pre-wrap;
+word-break:break-word;
 }
 
 </style>
@@ -160,8 +174,6 @@ $14.99
 </div>
 
 
-<!-- USD BUTTON -->
-
 <button
 class="btn"
 id="usdButton"
@@ -176,8 +188,6 @@ onclick="startPayment('USD')"
 <br>
 
 
-<!-- NAIRA BUTTON -->
-
 <button
 class="btn"
 id="ngnButton"
@@ -190,8 +200,11 @@ onclick="startPayment('NGN')"
 
 
 <div id="paymentStatus">
-Preparing secure payment...
+Preparing secure Flutterwave payment...
 </div>
+
+
+<div id="errorBox"></div>
 
 
 <p class="note">
@@ -221,8 +234,9 @@ async function startPayment(currency){
     const status =
         document.getElementById("paymentStatus");
 
+    const errorBox =
+        document.getElementById("errorBox");
 
-    // Disable buttons while processing
 
     usdButton.disabled = true;
     ngnButton.disabled = true;
@@ -231,7 +245,11 @@ async function startPayment(currency){
     status.style.display = "block";
 
     status.innerText =
-        "Preparing secure Flutterwave payment...";
+        "Connecting to PromptPro Hub payment server...";
+
+
+    errorBox.style.display = "none";
+    errorBox.innerText = "";
 
 
     try{
@@ -258,18 +276,53 @@ async function startPayment(currency){
         );
 
 
-        const result =
-            await response.json();
+        const rawText =
+            await response.text();
 
+
+        let result;
+
+        try{
+
+            result =
+                JSON.parse(rawText);
+
+        }catch{
+
+            result = {
+                raw_response: rawText
+            };
+
+        }
+
+
+        console.log(
+            "Railway HTTP Status:",
+            response.status
+        );
+
+        console.log(
+            "Railway Response:",
+            result
+        );
+
+
+        /*
+        ====================================================
+        PAYMENT CREATED
+        ====================================================
+        */
 
         if(
+            response.ok
+            &&
             result.status === "success"
             &&
             result.payment_url
         ){
 
             status.innerText =
-                "Redirecting to secure payment...";
+                "Payment created. Redirecting...";
 
 
             window.location.href =
@@ -279,10 +332,23 @@ async function startPayment(currency){
         }
 
 
+        /*
+        ====================================================
+        PAYMENT CREATION FAILED
+        ====================================================
+        */
+
         throw new Error(
-            result.message
-            ||
-            "Payment could not be created."
+
+            "HTTP Status: "
+            + response.status
+            + "\n\n"
+            + JSON.stringify(
+                result,
+                null,
+                2
+            )
+
         );
 
 
@@ -294,11 +360,17 @@ async function startPayment(currency){
         );
 
 
-        status.style.display =
+        status.innerText =
+            "Payment creation failed.";
+
+
+        errorBox.style.display =
             "block";
 
-        status.innerText =
-            "Payment could not be started. Please try again.";
+
+        errorBox.innerText =
+            "SERVER RESPONSE:\n\n"
+            + error.message;
 
 
         usdButton.disabled = false;
