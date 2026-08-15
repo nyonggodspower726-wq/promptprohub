@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Download Your Ebook | PromptPro Hub</title>
 
 <style>
@@ -22,18 +23,22 @@ body{
     padding:40px;
     border-radius:15px;
     max-width:600px;
+    width:90%;
     text-align:center;
     box-shadow:0 15px 40px rgba(0,0,0,.35);
+    box-sizing:border-box;
 }
 
 img{
     width:220px;
+    max-width:100%;
     border-radius:10px;
     margin-bottom:20px;
 }
 
 h1{
     color:#4F8CFF;
+    margin-bottom:20px;
 }
 
 p{
@@ -51,10 +56,17 @@ p{
     border-radius:10px;
     font-size:18px;
     font-weight:bold;
+    cursor:pointer;
+    border:none;
 }
 
 .btn:hover{
     background:#2f6fff;
+}
+
+.help{
+    margin-top:30px;
+    font-size:14px;
 }
 </style>
 
@@ -64,26 +76,33 @@ p{
 
 <div class="card">
 
-<img src="ebook.png" alt="PromptPro Hub">
+    <img src="ebook.png" alt="PromptPro Hub">
 
-<h1>🎉 Payment Successful!</h1>
+    <h1>🎉 Payment Successful!</h1>
 
-<p>
-Thank you for purchasing <strong>PromptPro Hub – The Ultimate AI Business Toolkit.</strong>
-</p>
+    <p>
+        Thank you for purchasing
+        <strong>PromptPro Hub – The Ultimate AI Business Toolkit.</strong>
+    </p>
 
-<p>
-Click the button below to download your ebook instantly.
-</p>
+    <p>
+        Your ebook is ready.
+        Click the button below to download it instantly.
+    </p>
 
-<a class="btn" href="PromptProHub.pdf" download>
-📥 Download Your Ebook
-</a>
+    <!-- DIRECT EBOOK DOWNLOAD -->
+    <a
+        class="btn"
+        href="https://nyonggodspower726-wq.github.io/promptprohub/PromptProHub.pdf"
+        download="PromptProHub.pdf"
+    >
+        📥 Download Your Ebook
+    </a>
 
-<p style="margin-top:30px;font-size:14px;">
-Need help?<br>
-Contact PromptPro Hub Support
-</p>
+    <p class="help">
+        Need help?<br>
+        Contact PromptPro Hub Support
+    </p>
 
 </div>
 
