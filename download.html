@@ -7,6 +7,10 @@
 <title>Download Your Ebook | PromptPro Hub</title>
 
 <style>
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
@@ -16,17 +20,17 @@ body{
     justify-content:center;
     align-items:center;
     min-height:100vh;
+    padding:20px;
 }
 
 .card{
     background:#111C33;
     padding:40px;
     border-radius:15px;
+    width:100%;
     max-width:600px;
-    width:90%;
     text-align:center;
     box-shadow:0 15px 40px rgba(0,0,0,.35);
-    box-sizing:border-box;
 }
 
 img{
@@ -38,7 +42,7 @@ img{
 
 h1{
     color:#4F8CFF;
-    margin-bottom:20px;
+    margin:10px 0 20px;
 }
 
 p{
@@ -87,13 +91,15 @@ p{
 
     <p>
         Your ebook is ready.
-        Click the button below to download it instantly.
+        Click the button below to download it to your device.
     </p>
 
+    <!-- EBOOK DOWNLOAD -->
     <a
         class="btn"
-        href="/PromptProHub.pdf"
+        href="https://nyonggodspower726-wq.github.io/promptprohub/PromptProHub.pdf"
         download="PromptProHub.pdf"
+        target="_self"
     >
         📥 Download Your Ebook
     </a>
